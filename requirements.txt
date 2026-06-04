@@ -1,0 +1,10 @@
+google-genai
+python-dotenv
+python-magic
+PyMuPDF
+pandas
+openpyxl
+python-pptx
+python-docx
+opencv-python
+pytesseract

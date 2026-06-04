@@ -1,0 +1,8 @@
+# Environments
+venv/
+.venv/
+env/
+
+# Secrets and Configuration
+.env
+.env.local
