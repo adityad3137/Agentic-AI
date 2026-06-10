@@ -1,13 +1,11 @@
-from agent import SummarizerAgent, DataAnalyzerAgent, ContentCreatorAgent, CodeGeneratorAgent, RouterAgent
 from extract_data import *
+from agent import Agent
+from collections import deque
+import sys
 
 def main():
 
-    router = RouterAgent()
-    summarizer = SummarizerAgent()
-    analytics = DataAnalyzerAgent()
-    content = ContentCreatorAgent()
-    coder = CodeGeneratorAgent()
+    agent = Agent()
 
     file_path = input("Please enter the file path here: ").strip()
     try:
@@ -17,6 +15,9 @@ def main():
         print("Terminating program")
         sys.exit(1)
     
+    prev_conversations = deque()
+    MAX_PREV_CONVERSATIONS_ALLOWED = 5
+
     while True:
 
         query = input("> ").strip()
@@ -24,27 +25,19 @@ def main():
         if query == "exit":
             print("Conversation terminated successfully!")
             return
-        
-        route = router.route(query)
+
+        route = agent.run("Router", query, document, prev_conversations)
 
         print(f"Routing to: {route}")
 
-        if route == "SUMMARIZER":
-            answer = summarizer.summarize(document + query)
+        answer = agent.run(route, query, document, prev_conversations)
 
-        elif route == "DATA_ANALYTICS":
-            answer = analytics.analyze_data(document + query)
+        print(answer + "\n\n")
 
-        elif route == "CONTENT_CREATION":
-            answer = content.create_content(document + query)
-
-        elif route == "CODE_GENERATION":
-            answer = coder.generate_code(document + query)
-
-        else:
-            answer = "Unable to determine agent."
-
-        print(answer)
+        if len(prev_conversations) == MAX_PREV_CONVERSATIONS_ALLOWED:
+            prev_conversations.popleft()
+        
+        prev_conversations.append({query : answer})
 
 if __name__ == "__main__":
     main()
