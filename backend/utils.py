@@ -124,10 +124,10 @@ prompt = {
 }
 
 def prev_conv_to_string(prev_conversation):
-    if len(prev_conversation) == 0:
+    if len(prev_conversation) == 0 :
         return ""
     
-    prev_conv = "\n\nThe previous conversation is : \n"
+    prev_conv = "\nThe previous conversation is : \n"
 
     for conv_dict in prev_conversation:
         for query, response in conv_dict.items():

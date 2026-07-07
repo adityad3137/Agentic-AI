@@ -1,0 +1,223 @@
+.home-page{
+
+    width:100%;
+}
+
+.container-home{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:45px;
+}
+
+/* CARDS */
+
+.container-home button{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:330px;
+
+    height:260px;
+
+    border:none;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    color:white;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:35px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+
+    transition:
+        transform .25s,
+        background .25s,
+        box-shadow .25s;
+}
+
+.container-home button::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:1px;
+
+    background:rgba(255,255,255,.25);
+}
+
+.container-home button:hover{
+
+    transform:translateY(-8px);
+
+    background:rgba(255,255,255,.09);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.35);
+}
+
+.container-home button:active{
+
+    transform:scale(.98);
+}
+
+.container-home button:focus-visible{
+
+    outline:3px solid #60a5fa;
+
+    outline-offset:5px;
+}
+
+.icon{
+
+    font-size:4rem;
+}
+
+.card-title{
+
+    font-size:1.45rem;
+
+    font-weight:700;
+}
+
+.card-description{
+
+    text-align:center;
+
+    color:#d7e1ea;
+
+    line-height:1.7;
+
+    font-size:.95rem;
+}
+
+/* MODEL SELECT */
+
+.model-select{
+
+    width:100%;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:30px;
+}
+
+.model-select button{
+
+    width:220px;
+
+    height:170px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    color:white;
+
+    font-size:1.1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.2);
+}
+
+.model-select button:hover{
+
+    transform:translateY(-6px);
+
+    background:rgba(255,255,255,.1);
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.28);
+}
+
+.model-select button:active{
+
+    transform:scale(.98);
+}
+
+@media(max-width:900px){
+
+.container-home{
+
+    flex-direction:column;
+}
+
+.container-home button{
+
+    width:100%;
+
+    max-width:380px;
+}
+
+.model-select button{
+
+    width:45%;
+}
+
+}
+
+@media(max-width:600px){
+
+.model-select button{
+
+    width:100%;
+}
+
+.logo-section h1{
+
+    font-size:2.2rem;
+}
+
+}

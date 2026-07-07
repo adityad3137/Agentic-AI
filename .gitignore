@@ -1,8 +1,23 @@
-# Environments
+# Python(Backend)
 venv/
-.venv/
 env/
+__pycache__/
+*.pyc
 
 # Secrets and Configuration
 .env
+*.env
 .env.local
+
+# Frontend Dependencies
+node_modules/
+
+# Production builds 
+dist/
+build/
+.next/
+out/
+
+# System Files
+.DS_Store
+Thumbs.db

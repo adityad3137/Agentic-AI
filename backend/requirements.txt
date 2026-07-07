@@ -1,4 +1,5 @@
 google-genai
+openai
 python-dotenv
 python-magic
 PyMuPDF
@@ -8,3 +9,6 @@ python-pptx
 python-docx
 opencv-python
 pytesseract
+faiss-cpu
+sentence-transformers
+flask-cors
