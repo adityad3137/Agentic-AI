@@ -95,7 +95,7 @@ B --> C[Chunk Document]
 
 C --> D[Generate Embeddings]
 
-D --> E[(Vector Database)]
+D --> E[(Store Embeddings Locally)]
 
 F[User Query]
 --> G[Generate Query Embedding]
@@ -110,7 +110,7 @@ I --> J[Provide Context to Agent]
 
 J --> K[LLM]
 
-K --> L[Grounded Response]
+K --> L[Response]
 ```
 
 ---
@@ -171,7 +171,7 @@ source venv/bin/activate
 venv\Scripts\activate
 
 pip install -r requirements.txt
-python app.py
+python main.py
 ```
 
 ### Frontend
@@ -196,8 +196,7 @@ Include in the repository:
 
 ## 📈 Future Enhancements
 
-- Streaming AI responses
-- Source citations
+- Store embeddings in Vector DB
 - Authentication
 - Cloud deployment
 - Persistent conversation storage
