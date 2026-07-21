@@ -20,42 +20,44 @@ The application grounds LLM responses in user-provided documents through semanti
 
 ## 🏗️ Application Workflow
 
-```text
-                     User
-                      │
-                      ▼
-              Select / Create Model
-                      │
-        ┌─────────────┴─────────────┐
-        ▼                           ▼
- Existing Model          Create / Append Model
-        │                           │
-        └─────────────┬─────────────┘
-                      │
-                      ▼
-               Chat Interface
-                      │
-                      ▼
-                 User Query
-                      │
-                      ▼
-                Router Agent
-                      │
-            (LLM selects agent)
-                      │
-        ┌─────────────┼─────────────┐─────────────┐
-        ▼             ▼             ▼             ▼
- Content       Data Analytics   Summarizer   Code Generator
- Generation
-        │
-        ▼
- Query + Recent Conversation + RAG Context
-        │
-        ▼
-       LLM
-        │
-        ▼
-   AI Generated Response
+```mermaid
+flowchart TD
+
+A([User]) --> B{Model Selection}
+
+B -->|Existing Model| C[Select Existing Model]
+B -->|Create / Extend| D{Model Management}
+
+D --> E[Create New Model]
+D --> F[Append Existing Model]
+
+C --> G[Chat Interface]
+E --> G
+F --> G
+
+G --> H[User Query]
+
+H --> I[Router Agent]
+
+I --> J[LLM decides appropriate agent]
+
+J --> K1[Content Generation Agent]
+J --> K2[Data Analytics Agent]
+J --> K3[Summarizer Agent]
+J --> K4[Code Generation Agent]
+
+K1 --> L[Prepare Context]
+K2 --> L
+K3 --> L
+K4 --> L
+
+L --> M["User Query<br/>+ Previous 5 Conversations<br/>+ RAG Retrieved Chunks"]
+
+M --> N[LLM]
+
+N --> O[Generated Response]
+
+O --> P[Display Response]
 ```
 
 ---
@@ -83,31 +85,32 @@ before generating the final response.
 
 ## 🔍 Retrieval-Augmented Generation (RAG)
 
-```
-Document Upload
-      │
-      ▼
-Text Extraction
-      │
-      ▼
-Chunking
-      │
-      ▼
-Embedding Generation
-      │
-      ▼
-Store Embeddings locally
+```mermaid
+flowchart TD
 
-User Query
-      │
-      ▼
-Semantic Search
-      │
-      ▼
-Relevant Document Chunks
-      │
-      ▼
-LLM Response Generation
+A[Upload Document]
+--> B[Extract Text]
+
+B --> C[Chunk Document]
+
+C --> D[Generate Embeddings]
+
+D --> E[(Vector Database)]
+
+F[User Query]
+--> G[Generate Query Embedding]
+
+G --> H[Semantic Similarity Search]
+
+E --> H
+
+H --> I[Retrieve Relevant Chunks]
+
+I --> J[Provide Context to Agent]
+
+J --> K[LLM]
+
+K --> L[Grounded Response]
 ```
 
 ---
