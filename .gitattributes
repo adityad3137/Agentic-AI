@@ -1,2 +1,1 @@
-static/css/* linguist-vendored
-*.min.css linguist-vendored
+*.css linguist-detectable=false
