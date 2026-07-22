@@ -184,16 +184,6 @@ npm run dev
 
 ---
 
-## 📸 Demo
-
-Include in the repository:
-- Home Screen
-- Model Management
-- Chat Interface
-- 2–3 minute demonstration video
-
----
-
 ## 📈 Future Enhancements
 
 - Store embeddings in Vector DB
