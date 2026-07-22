@@ -255,94 +255,175 @@
     color:white;
 }
 
+
 .chat-messages{
-
     flex:1;
-
     overflow-y:auto;
-
     padding:40px 60px;
-
     display:flex;
-
     flex-direction:column;
-
     gap:18px;
 }
 
 .chat-messages::-webkit-scrollbar{
-
     width:8px;
 }
 
 .chat-messages::-webkit-scrollbar-thumb{
-
     background:rgba(255,255,255,.18);
-
     border-radius:20px;
 }
 
 .message{
-
-    max-width:65%;
-
+    max-width:75%;
     padding:14px 18px;
-
     border-radius:16px;
-
-    line-height:1.7;
-
-    font-size:.96rem;
-
+    margin:8px 0;
+    width:fit-content;
     animation:fadeIn .25s ease;
-
-    margin: 10px 0;
-    
-    width: fit-content;
+    line-height:1.5;
 }
 
 .message.user{
-
     align-self:flex-end;
-
     background:#2563eb;
-
     color:white;
-
     border-bottom-right-radius:6px;
-
-    box-shadow:
-        0 10px 20px rgba(37,99,235,.3);
+    box-shadow:0 10px 20px rgba(37,99,235,.3);
 }
 
 .message.bot{
-
     align-self:flex-start;
-
     background:rgba(255,255,255,.08);
-
     color:#f4f4f4;
-
     border:1px solid rgba(255,255,255,.08);
-
     border-bottom-left-radius:6px;
 
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
 }
 
-.message.bot ol,
-.message.bot ul {
-    margin: 0;
-    padding-left: 20px;
+/* ---------- Markdown ---------- */
+
+.message.bot p{
+    margin:0;
 }
 
-.message.bot li {
-    margin: 4px 0;
+
+.message.bot p + p{
+    margin-top:0.5rem;
 }
 
+/* Lists */
+
+.message.bot ul,
+.message.bot ol{
+    margin:0.5rem 0;
+    padding-left:1.5rem;
+}
+
+/* List items */
+
+.message.bot li{
+    margin:0.25rem 0;
+}
+
+/* Remove paragraph margins inside list items */
+.message.bot li:empty::marker{
+    content:"";
+}
+
+.message.bot li p{
+    margin:0;
+}
+
+/* Nested lists */
+
+
+.message.bot li > ul,
+.message.bot li > ol{
+    margin-top:0.25rem;
+}
+
+/* Headings */
+
+.message.bot h1,
+.message.bot h2,
+.message.bot h3,
+.message.bot h4{
+    margin:0.8rem 0 0.4rem;
+}
+
+/* Code block */
+
+.message.bot pre{
+    overflow-x:auto;
+    max-width:100%;
+    padding:12px;
+    border-radius:8px;
+    background:#1e1e1e;
+}
+
+/* Inline code */
+
+.message.bot :not(pre) > code{
+    padding:2px 5px;
+    border-radius:4px;
+}
+
+/* ---------- Code Block ---------- */
+
+.message.bot pre{
+    background:#111827;
+    color:#f8fafc;
+    padding:14px;
+    border-radius:10px;
+    overflow-x:auto;
+    margin:.8rem 0;
+    max-width:100%;
+}
+
+.message.bot pre code{
+    background:none;
+    padding:0;
+    font-family:Consolas, Monaco, monospace;
+    font-size:.9rem;
+    white-space:pre;
+}
+
+/* ---------- Tables ---------- */
+
+.message.bot table{
+    display:block;
+    overflow-x:auto;
+    border-collapse:collapse;
+    margin:.8rem 0;
+}
+
+.message.bot th,
+.message.bot td{
+    border:1px solid #555;
+    padding:8px 12px;
+}
+
+.message.bot th{
+    background:#1f2937;
+}
+
+/* ---------- Images ---------- */
+
+.message.bot img{
+    max-width:100%;
+    border-radius:8px;
+}
+
+/* ---------- Horizontal Rule ---------- */
+
+.message.bot hr{
+    border:none;
+    border-top:1px solid #555;
+    margin:1rem 0;
+}
 .chat-input-container{
 
     display:flex;

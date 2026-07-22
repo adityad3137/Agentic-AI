@@ -1,6 +1,7 @@
 import './Chatbot.css'
 import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from "remark-gfm";
 
 export function Chatbot(){
     const [myQuery, setMyQuery] = useState("");
@@ -52,7 +53,7 @@ export function Chatbot(){
         if(!myQuery.trim())
             return;
         
-        setMessage((History) => [...History, {sender : "user", content : myQuery.trim()}]);
+        setMessage((History) => [...History, {sender : "user", content : myQuery.trim()}, {sender : "bot", content : "Thinking..."}]);
 
         setMyQuery("");
     }
@@ -92,13 +93,13 @@ export function Chatbot(){
             const response = await fetch("http://127.0.0.1:5000/api/reply");
             const rawText = await response.text();
             const data = JSON.parse(rawText);
-            const answer = data.answer;
-            
+            const answer = data.answer.replace(/\n{3,}/g, "\n\n").trim();
+
             console.log(answer);
 
             if(response.ok){
                 console.log("Reply received");
-                setMessage((History) => [...History, {sender : "bot", content : answer}]);
+                setMessage((History) => [...History.slice(0,-1), {sender : "bot", content : answer}]);
             }
             else{
                 console.error("No reply received");
@@ -150,7 +151,7 @@ export function Chatbot(){
                 <div className="chat-messages">
                     {messages.map((msg, index) => 
                         <div key = {index} className = {`message ${msg.sender}`}>
-                            <ReactMarkdown>{msg.content}</ReactMarkdown>
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
                         </div>
                     )}
                 </div>
